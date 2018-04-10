@@ -26,7 +26,9 @@ wget -O - http://mirror.fuel-infra.org/mcp-repos/newton/xenial/archive-mcpnewton
 sudo echo "deb http://mirror.fuel-infra.org/mcp-repos/newton/xenial newton main" > /etc/apt/sources.list.d/ironic.list
 
 sudo apt-get update
-sudo apt-get install -y salt-minion
+git clone https://github.com/saltstack/salt.git -b v2017.7.4
+cd salt
+python setup.py install --force
 
 WORKDIR=${WORKDIR:-'/tmp/'}
 cd ${WORKDIR}
