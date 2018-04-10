@@ -17,18 +17,15 @@ IRONIC_ENABLE_KEYSTONE=false && [[ "${IRONIC_PXE_MANAGER}" == "neutron" ]] && IR
 # Inverse flag for dnsmasq config
 DNSMASQ_DONT_USE_EXTERNAL_DNS=false && [[ "${DNSMASQ_USE_EXTERNAL_DNS}" == false ]] && DNSMASQ_DONT_USE_EXTERNAL_DNS=true
 
-# Install latest salt
-wget -O - https://repo.saltstack.com/apt/ubuntu/16.04/amd64/latest/SALTSTACK-GPG-KEY.pub | sudo apt-key add -
-sudo echo "deb http://repo.saltstack.com/apt/ubuntu/16.04/amd64/latest xenial main" >  /etc/apt/sources.list.d/saltstack.list
+# Install salt
+sudo echo "deb [arch=amd64] http://mirror.mirantis.com/testing/saltstack-2016.3/xenial xenial main" > /etc/apt/sources.list.d/saltstack.list
 
 # Install ironic from Newton release
 wget -O - http://mirror.fuel-infra.org/mcp-repos/newton/xenial/archive-mcpnewton.key | sudo apt-key add -
 sudo echo "deb http://mirror.fuel-infra.org/mcp-repos/newton/xenial newton main" > /etc/apt/sources.list.d/ironic.list
 
 sudo apt-get update
-git clone https://github.com/saltstack/salt.git -b v2017.7.4
-cd salt
-python setup.py install --force
+sudo apt-get install salt-minion -y
 
 WORKDIR=${WORKDIR:-'/tmp/'}
 cd ${WORKDIR}
