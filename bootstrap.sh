@@ -25,7 +25,7 @@ wget -O - http://mirror.fuel-infra.org/mcp-repos/newton/xenial/archive-mcpnewton
 sudo echo "deb http://mirror.fuel-infra.org/mcp-repos/newton/xenial newton main" > /etc/apt/sources.list.d/ironic.list
 
 sudo apt-get update
-sudo apt-get install salt-minion -y
+sudo apt-get install salt-minion -y --allow-unauthenticated
 
 WORKDIR=${WORKDIR:-'/tmp/'}
 cd ${WORKDIR}
