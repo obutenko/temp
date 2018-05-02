@@ -26,7 +26,7 @@ sudo echo "deb http://mirror.fuel-infra.org/mcp-repos/newton/xenial newton main"
 
 sudo apt-get update
 sudo apt-get install salt-minion -y --allow-unauthenticated
-
+sudo apt-get install linux-headers-generic -y
 WORKDIR=${WORKDIR:-'/tmp/'}
 cd ${WORKDIR}
 
